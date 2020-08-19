@@ -44,6 +44,16 @@ yargs
 		alias: 'r',
 		description: 'Test pack run id: https://suite.st/docs/suitest-network-api/api-reference/',
 	})
+	.option('app-id', {
+		type: 'string',
+		alias: 'a',
+		description: 'Application ID',
+	})
+	.option('version-id', {
+		type: 'string',
+		alias: 'v',
+		description: 'App version ID',
+	})
 	.help('help');
 
 const options = yargs.parse();
@@ -218,7 +228,9 @@ const main = async (): Promise<void> => {
 			options.tokenId,
 			options.tokenPassword,
 			options.testPackRunId,
-			options.testResultId
+			options.testResultId,
+			options.appId,
+			options.versionId,
 		);
 	} else {
 		data = (await import('./dataProviders/from-local-files')).default;
@@ -245,7 +257,13 @@ const main = async (): Promise<void> => {
 
 	const templatePath = path.join(__dirname, 'index.ejs');
 	const template = await readFile(templatePath, 'utf8');
-	const rendered = ejs.render(template, {translations}, {filename: templatePath});
+	const rendered = ejs.render(template, {
+		translations,
+		testName: data.testName,
+		deviceName: data.deviceName,
+	}, {
+		filename: templatePath,
+	});
 	await writeFile(path.join(__dirname, '..', 'build', 'index.html'), rendered, 'utf8');
 };
 

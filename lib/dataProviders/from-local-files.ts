@@ -14,4 +14,6 @@ export default {
 	snippetNames,
 	elementNames,
 	testResults,
+	deviceName: 'Samsung Tizen 2017',
+	testName: 'My test',
 };
