@@ -166,7 +166,7 @@ const translate = (data: {
 			formattedText,
 			html,
 			lineNumber: lineIndex + 1,
-			startTime: new Date(lineResult?.timeStarted),
+			startTime: lineResult?.timeStarted ? new Date(lineResult.timeStarted) : undefined,
 			includeInStepsToReproduce: isCommand(testLine)
 				|| lineResult?.result !== 'success'
 				|| testLine.fatal,
