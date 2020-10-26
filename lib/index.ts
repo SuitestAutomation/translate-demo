@@ -88,6 +88,7 @@ const ansiToHtml = (text: string): string =>
 			'31': '<span style="color: darkred">',
 			'33': '<span style="color: darkorange">',
 			'34': '<span style="color: darkblue">',
+			'35': '<span style="color: magenta">'
 		}[m[1]]
 	));
 
@@ -119,9 +120,9 @@ const translateSingleLine = (
 	return translations
 		// Render to text / html
 		.map(smst => ([
-			toText(smst, false),
-			ansiToHtml(toText(smst, true)),
-			toHtml(smst),
+			toText(smst, {verbosity: 'normal', format: false}),
+			ansiToHtml(toText(smst, {verbosity: 'normal', format: true})),
+			toHtml(smst, {verbosity: 'normal'}),
 		]))
 		// transpose array
 		.reduce((prev, next) => next.map((item, i) =>
