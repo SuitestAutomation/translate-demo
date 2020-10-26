@@ -1,6 +1,6 @@
 {
   "name": "@suitest/translate-demo",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Demo for translation renderers",
   "repository": {
     "type": "git",
