@@ -120,9 +120,9 @@ const translateSingleLine = (
 	return translations
 		// Render to text / html
 		.map(smst => ([
-			toText(smst, {verbosity: 'normal', format: false}),
-			ansiToHtml(toText(smst, {verbosity: 'normal', format: true})),
-			toHtml(smst, {verbosity: 'normal'}),
+			toText(smst, {format: false, verbosity: 'verbose'}),
+			ansiToHtml(toText(smst, {format: true, verbosity: 'verbose'})),
+			toHtml(smst, {verbosity: 'verbose'}),
 		]))
 		// transpose array
 		.reduce((prev, next) => next.map((item, i) =>
